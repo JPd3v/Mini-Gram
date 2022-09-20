@@ -27,6 +27,7 @@ export function createUser({
       updateProfile(user, { displayName: userName, photoURL: profileImage });
       // ...
     })
+
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -40,7 +41,7 @@ export function logInWithEmail(email: string, password: string) {
     .then((userCredential) => {
       // Signed in
       const { user } = userCredential;
-      console.log(user);
+      console.log(user.uid);
       // ...
     })
     .catch((error) => {

@@ -1,6 +1,5 @@
 import { useFormik } from 'formik';
-import { useAuth } from '../context/AuthContext';
-import { logInWithEmail, logOut } from '../services/auth';
+import { logInWithEmail } from '../services/auth';
 
 interface Validate {
   email: string;
@@ -23,8 +22,6 @@ function validate(values: Validate) {
 }
 
 export default function LogInForm() {
-  const authHello = useAuth();
-  console.log(authHello);
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -32,7 +29,6 @@ export default function LogInForm() {
     },
     validate,
     onSubmit: (values) => {
-      console.log(authHello);
       alert(JSON.stringify(values, null, 2));
       logInWithEmail(values.email, values.password);
     },
@@ -70,14 +66,6 @@ export default function LogInForm() {
       ) : null}
 
       <button type="submit">Submit</button>
-      <button
-        type="button"
-        onClick={() => {
-          logOut();
-        }}
-      >
-        logout
-      </button>
     </form>
   );
 }
